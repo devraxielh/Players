@@ -15,3 +15,8 @@ export const crearEstadistica = async (data: NuevaEstadistica): Promise<Estadist
 export const eliminarEstadistica = async (id: number): Promise<void> => {
   await axios.delete(`${API_URL}estadisticas-generales/${id}/`);
 };
+
+export const actualizarEstadistica = async (id: number, data: NuevaEstadistica): Promise<Estadistica> => {
+  const response = await axios.put(`${API_URL}estadisticas-generales/${id}/`, data);
+  return response.data;
+};
