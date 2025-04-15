@@ -6,7 +6,11 @@ import { obtenerJugadorPorId } from "../../services/jugadoresService";
 import { Jugador } from "../../types/jugador";
 import { adaptarJugador } from "../../utils/adaptadores";
 import EstadisticasGenerales from "../../components/jugadores/EstadisticasGenerales";
+import EstadisticasJuego from "../../components/jugadores/EstadisticasJuego";
+
 import { ArrowLeft } from "lucide-react";
+
+
 
 export default function JugadorDetalle() {
   const { id } = useParams<{ id: string }>();
@@ -64,6 +68,9 @@ export default function JugadorDetalle() {
 
         <div className="mx-auto w-full mt-6">
           <EstadisticasGenerales jugadorId={jugador.id} />
+        </div>
+        <div className="mx-auto w-full mt-6">
+          <EstadisticasJuego jugadorId={jugador.id} />
         </div>
       </div>
     </div>
