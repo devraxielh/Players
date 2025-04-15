@@ -1,0 +1,35 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}
+⚖️ Comparación de jugadores: {{ jugador.nombre_completo }}
+{% endblock %}
+{% block content %}
+  <h1>Selecciona un jugador para comparar</h1>
+
+  <form method="post" style="margin-bottom: 20px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button" style="padding: 6px 12px; text-decoration: none; border-radius: 4px; margin-left: 10px;">🔍 Comparar</button>
+    <a href="{% url 'admin:jugadores_jugador_change' jugador_id %}"
+       class="button"
+       style="padding: 6px 12px; text-decoration: none; border-radius: 4px; margin-left: 10px;">
+       ⬅️ Volver
+    </a>
+  </form>
+
+  <!-- Estilos y JS para Select2 -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      console.log("Select2 initialized");
+      $('#id_jugador_comparado').select2({
+        placeholder: "Escribe para buscar un jugador...",
+        allowClear: true
+      });
+    });
+  </script>
+{% endblock %}

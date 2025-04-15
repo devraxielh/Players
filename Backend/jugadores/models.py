@@ -22,8 +22,12 @@ class Jugador(models.Model):
     estatura = models.FloatField()
     peso = models.FloatField()
     foto = models.ImageField(upload_to='jugadores_fotos/', blank=True, null=True)
+    observaciones = models.TextField(blank=True, null=True)
     def __str__(self):
         return self.nombre_completo
+    class Meta:
+        verbose_name = "jugador"
+        verbose_name_plural = "jugadores"
 
 class EstadisticasGenerales(models.Model):
     jugador = models.ForeignKey(Jugador, on_delete=models.CASCADE)

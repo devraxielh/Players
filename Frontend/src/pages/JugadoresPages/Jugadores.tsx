@@ -5,8 +5,7 @@ import PageMeta from "../../components/common/PageMeta";
 import { obtenerJugadores } from "../../services/jugadoresService";
 import { Jugador, JugadorAPI } from "../../types/jugador";
 import { adaptarJugador } from "../../utils/adaptadores";
-import Button from "../../components/ui/button/Button";
-import { Eye } from "lucide-react";
+import { Eye, UserPlus } from "lucide-react";
 
 import {
   Table,
@@ -24,7 +23,7 @@ export default function Jugadores() {
   useEffect(() => {
     const fetchJugadores = async () => {
       try {
-        const data: JugadorAPI[] = await obtenerJugadores();
+        const data = await obtenerJugadores();
         const jugadoresAdaptados = data.map(adaptarJugador);
         setJugadores(jugadoresAdaptados);
       } catch (error) {
@@ -47,25 +46,34 @@ export default function Jugadores() {
 
       <div className="min-h-screen rounded-2xl border border-gray-200 bg-white px-5 py-7 dark:border-gray-800 dark:bg-gray-900 xl:px-10 xl:py-12">
         <div className="mx-auto w-full">
-          <div className="mb-6 flex flex-col sm:flex-row gap-4">
-            <input
-              type="text"
-              placeholder="Filtrar por nombre"
-              value={filtroNombre}
-              onChange={(e) => setFiltroNombre(e.target.value)}
-              className="w-full sm:w-1/2 px-4 py-2 border rounded-lg dark:bg-gray-800 dark:text-white"
-            />
-            <select
-              value={filtroPosicion}
-              onChange={(e) => setFiltroPosicion(e.target.value)}
-              className="w-full sm:w-1/2 px-4 py-2 border rounded-lg dark:bg-gray-800 dark:text-white"
+          <div className="mb-6 flex flex-col sm:flex-row gap-4 justify-between">
+            <div className="flex flex-col sm:flex-row gap-4 sm:w-2/3">
+              <input
+                type="text"
+                placeholder="Filtrar por nombre"
+                value={filtroNombre}
+                onChange={(e) => setFiltroNombre(e.target.value)}
+                className="w-full sm:w-1/2 px-4 py-2 border rounded-lg dark:bg-gray-800 dark:text-white"
+              />
+              <select
+                value={filtroPosicion}
+                onChange={(e) => setFiltroPosicion(e.target.value)}
+                className="w-full sm:w-1/2 px-4 py-2 border rounded-lg dark:bg-gray-800 dark:text-white"
+              >
+                <option value="">Todas las posiciones</option>
+                <option value="ARQ">Arquero</option>
+                <option value="DEF">Defensa</option>
+                <option value="MED">Mediocampista</option>
+                <option value="DEL">Delantero</option>
+              </select>
+            </div>
+            <Link
+              to="/jugadores/nuevo"
+              className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/80 transition-colors"
             >
-              <option value="">Todas las posiciones</option>
-              <option value="ARQ">Arquero</option>
-              <option value="DEF">Defensa</option>
-              <option value="MED">Mediocampista</option>
-              <option value="DEL">Delantero</option>
-            </select>
+              <UserPlus size={20} />
+              Crear Jugador
+            </Link>
           </div>
 
           <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-white/[0.05] dark:bg-white/[0.03]">
@@ -91,7 +99,7 @@ export default function Jugadores() {
                 <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                   {jugadoresFiltrados.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={4} className="px-5 py-4 text-center text-gray-500 dark:text-gray-400">
+                      <TableCell className="px-5 py-4 text-center text-gray-500 dark:text-gray-400" colSpan={4}>
                         No se encontraron jugadores.
                       </TableCell>
                     </TableRow>

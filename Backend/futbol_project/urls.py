@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from jugadores.views import JugadorViewSet, EstadisticasGeneralesViewSet, EstadisticasJuegoViewSet  # Asegúrate de importar tus vistas
-
+from django.conf import settings
+from django.conf.urls.static import static
 # Crea el router y registra las vistas
 router = DefaultRouter()
 router.register(r'jugadores', JugadorViewSet)
@@ -29,3 +30,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),                 # Admin de Django
     path('', include(router.urls)),                  # Endpoints de API
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

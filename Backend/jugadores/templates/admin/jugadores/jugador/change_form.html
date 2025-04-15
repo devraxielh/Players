@@ -1,0 +1,16 @@
+{% extends "admin/change_form.html" %}
+
+{% block object-tools %}
+  {{ block.super }}
+  {% if reporte_pdf_url %}
+      <a class="button" href="{{ reporte_pdf_url }}" target="_blank">
+        📄 Generar Informe PDF
+      </a>
+  {% endif %}
+  <span style="margin-left:10px"></span>
+  {% if reporte_excel_url %}
+      <a class="button" href="{{ reporte_excel_url }}" target="_blank">
+        📄 Generar Informe Excel
+      </a>
+  {% endif %}
+{% endblock %}

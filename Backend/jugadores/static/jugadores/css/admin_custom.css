@@ -20,3 +20,37 @@
     flex: 1 1 45%;
     min-width: 150px;
 }
+
+
+.inline-related.collapsable-block {
+    border: 1px solid #ddd;
+    margin-bottom: 1em;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fafafa;
+  }
+  
+  .collapsable-header {
+    background-color: #e9ecef;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    color: #333;
+  }
+  
+  .collapsable-body {
+    padding: 15px;
+    display: none;
+  }
+  
+  .collapsable-block.active .collapsable-body {
+    display: block;
+  }
+  
+  .inline-group .cloned-empty-form {
+    border: 2px dashed #28a745;
+    background-color: #f0fff4;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
