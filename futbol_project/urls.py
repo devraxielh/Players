@@ -27,8 +27,8 @@ router.register(r'estadisticas-generales', EstadisticasGeneralesViewSet)
 router.register(r'estadisticas-juego', EstadisticasJuegoViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),                 # Admin de Django
-    path('', include(router.urls)),                  # Endpoints de API
+    path('', admin.site.urls),                 # Admin de Django
+    #path('', include(router.urls)),                  # Endpoints de API
 ]
 
 if settings.DEBUG:
